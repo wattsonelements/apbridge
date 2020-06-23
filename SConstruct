@@ -75,7 +75,7 @@ Help(command_line_vars.GenerateHelpText(baseEnv))
 
 # Ensure that no default targets exist, so you have to specify a target.
 # Give some help about what targets are available.
-def default(env, target, source): print SCons.Script.help_text
+def default(env, target, source): print(SCons.Script.help_text)
 Default(baseEnv.Command('default', None, default))
 
 try:
@@ -249,7 +249,7 @@ if platform.system() in 'Linux':
     else:
         raise UserError('Unknown target architecture')
 else:
-    print 'Unknown platform:', platform.system()
+    print('Unknown platform:', platform.system())
     Exit(1)
 
 
