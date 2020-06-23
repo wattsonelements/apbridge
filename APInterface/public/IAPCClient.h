@@ -6,10 +6,8 @@
 #include <string>
 #include "common/StatDelays.h"
 
-namespace boost { namespace asio { class io_service; } }
-
-enum apcclient_state_t { 
-   APCCLIENT_STATE_INIT,   
+enum apcclient_state_t {
+   APCCLIENT_STATE_INIT,
    APCCLIENT_STATE_ONLINE,
    APCCLIENT_STATE_OFFLINE,
    APCCLIENT_STATE_DISCONNECT,
@@ -22,7 +20,7 @@ enum apcclient_state_t {
 /**
  * Class supports processing input from Manager.
  */
-class IAPCClientNotif 
+class IAPCClientNotif
 {
 public:
    virtual ~IAPCClientNotif() {;}
@@ -39,7 +37,7 @@ public:
     *
     * \param   reason   The disconnection reason.
     */
-   virtual void disconnected (apc_stop_reason_t reason) = 0; 
+   virtual void disconnected (apc_stop_reason_t reason) = 0;
 
    /**
     * Data received.
@@ -115,8 +113,8 @@ public:
    virtual void        close() = 0;
 
    /**
-    * Starts the client event loop. 
-    * This method connects to the  APC server and 
+    * Starts the client event loop.
+    * This method connects to the  APC server and
     * starts the io_service event loop in a separate thread.
     *
     * \param param The initialize parameter of client.
@@ -126,7 +124,7 @@ public:
    virtual apc_error_t start(const start_param_t& param) = 0;
 
    /**
-    * Stops the client event loop thread. 
+    * Stops the client event loop thread.
     * This method returns when the event loop thread completes.
     */
    virtual void        stop() = 0;
@@ -204,8 +202,8 @@ public:
     * \return  The net identifier.
     */
    virtual uint32_t    getNetId() const = 0;
-   
-   
+
+
    /**
     * Gets the server available queue size.
     *
