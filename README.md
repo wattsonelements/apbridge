@@ -20,3 +20,10 @@ The AP Bridge sources are separated into several directories:
 ## Build instructions
 
 Detailed [build instructions](https://dustcloud.atlassian.net/wiki/display/APB/AP+Bridge+Integrator%27s+Guide) are available on Dustcloud.org.
+
+## Falco
+
+```bash
+sudo apt install supervisor stunnel4 python-psutil ntp
+sudo dpkg --install apbridge_VERSION.deb
+```
