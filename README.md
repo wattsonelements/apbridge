@@ -24,6 +24,6 @@ Detailed [build instructions](https://dustcloud.atlassian.net/wiki/display/APB/A
 ## Falco
 
 ```bash
-sudo apt install supervisor stunnel4 python-psutil ntp
+sudo apt install supervisor stunnel4 python-psutil ntp python-serial python-configobj libgps-dev python-zmq
 sudo dpkg --install apbridge_VERSION.deb
 ```
