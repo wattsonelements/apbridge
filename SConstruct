@@ -224,7 +224,7 @@ def get_raspi3_platform(env):
     env['BOOST_LIBS'] = [b + env['boost_lib_suffix'] for b in BOOST_LIBS]
     env['TOOL_LIBS'] = env['BOOST_LIBS'] + TOOL_LIBS + ['rt']
 
-    env['PLATFORM'] = 'armv7l'
+    env['PLATFORM'] = 'armpi-linux'
     return env
 
 if platform.system() in 'Linux':
