@@ -87,7 +87,7 @@ except:
 # Platform environment setup
 
 def findBoostDirs(baseEnv):
-    'Verify the Boost include and lib dirs'
+    """Verify the Boost include and lib dirs"""
     boost_prefix = baseEnv.subst('$boost_prefix')
     boost_incdir = None
     for incdir in (os.path.join(boost_prefix, 'include'),
@@ -136,7 +136,7 @@ TOOL_LIBS = [
 ]
 
 def getLinuxEnv(baseEnv):
-    'Construct the Linux build environment'
+    """Construct the Linux build environment"""
     boost_incdir, boost_libdir = findBoostDirs(baseEnv)
     env = baseEnv.Clone(
         HOST_ARCH = platform.machine() + '-linux',
@@ -183,19 +183,19 @@ def getLinuxEnv(baseEnv):
 
 
 def get_i686_platform(env):
-    'Set architecture-specific flags for i686'
+    """Set architecture-specific flags for i686"""
     env.Append(CCFLAGS = ['-m32'])
     env.Append(LINKFLAGS = ['-m32'])
     env['PLATFORM'] = 'i686-linux'
 
 def get_x86_64_platform(env):
-    'Set architecture-specific flags for x86-64'
+    """Set architecture-specific flags for x86-64"""
     env.Append(CCFLAGS = ['-m64'])
     env.Append(LINKFLAGS = ['-m64'])
     env['PLATFORM'] = 'x86_64-linux'
 
 def get_raspi2_platform(env):
-    'Set architecture-specific flags for raspberry pi 2'
+    """Set architecture-specific flags for raspberry pi 2"""
 
     # compiler location
     env['CXX']  = '$toolchain_dir/gcc-linaro-arm-linux-gnueabihf-raspbian/bin/arm-linux-gnueabihf-g++'
@@ -213,7 +213,7 @@ def get_raspi2_platform(env):
     return env
 
 def get_raspi3_platform(env):
-    'Set architecture-specific flags for raspberry pi 3'
+    """Set architecture-specific flags for raspberry pi 3"""
 
     if int(env['debug']):
         env.Append(CCFLAGS = ['-gdwarf-3'])
