@@ -21,9 +21,26 @@ The AP Bridge sources are separated into several directories:
 
 Detailed [build instructions](https://dustcloud.atlassian.net/wiki/display/APB/AP+Bridge+Integrator%27s+Guide) are available on Dustcloud.org.
 
-## Falco
+# Falco
+
+## Build
+
+Install dependencies:
 
 ```bash
-sudo apt install supervisor stunnel4 python-psutil ntp python-serial python-configobj libgps-dev python-zmq
+sudo apt install -y supervisor stunnel4 python-psutil ntp python-serial python-configobj libgps-dev python-zmq libboost-filesystem-dev libboost-chrono-dev libboost-thread-dev libboost-system-dev libboost-program-options-dev
+```
+
+Run build (from the apbridge folder):
+
+```bash
+scons apbridge target=armpi
+scons apbridge_pkg target=armpi3 boost_prefix=/usr/
+```
+
+## Install
+
+```bash
 sudo dpkg --install apbridge_VERSION.deb
 ```
+
