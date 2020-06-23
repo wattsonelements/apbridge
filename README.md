@@ -28,7 +28,7 @@ Detailed [build instructions](https://dustcloud.atlassian.net/wiki/display/APB/A
 Install dependencies:
 
 ```bash
-sudo apt install -y supervisor stunnel4 python-psutil ntp python-serial python-configobj libgps-dev python-zmq libboost-filesystem-dev libboost-chrono-dev libboost-thread-dev libboost-system-dev libboost-program-options-dev
+sudo apt install -y supervisor stunnel4 python-psutil ntp python-serial python-configobj libgps-dev python-protobuf python-zmq libboost-filesystem-dev libboost-chrono-dev libboost-thread-dev libboost-system-dev libboost-program-options-dev
 ```
 
 Run build (from the apbridge folder):
