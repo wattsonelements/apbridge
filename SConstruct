@@ -220,10 +220,6 @@ def get_raspi3_platform(env):
     if int(env['debug']):
         env.Append(CCFLAGS = ['-gdwarf-3'])
 
-    # Libraries
-    env['BOOST_LIBS'] = [b + env['boost_lib_suffix'] for b in BOOST_LIBS]
-    env['TOOL_LIBS'] = env['BOOST_LIBS'] + TOOL_LIBS + ['rt']
-
     env['PLATFORM'] = 'armpi-linux'
     return env
 
