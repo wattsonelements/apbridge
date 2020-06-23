@@ -1,8 +1,6 @@
 import os
 import sys
-import shutil
 import platform
-import glob
 
 import SCons
 from SCons.Errors import UserError
@@ -48,7 +46,7 @@ command_line_vars.AddVariables(
                  allowed_values=('i686', 'x86_64', 'armpi', 'armpi3')),
 )
 
-# for SCons to find the right compiler on Windows, TARGET_ARCH must be set 
+# for SCons to find the right compiler on Windows, TARGET_ARCH must be set
 # when the Environment is created
 baseEnv = Environment(variables = command_line_vars, TARGET_ARCH='i686-linux')
 
@@ -98,7 +96,7 @@ def findBoostDirs(baseEnv):
             boost_incdir = incdir
     if not boost_incdir:
         raise UserError('can not find include directory for Boost')
-    
+
     boost_libdir = None
     for libdir in (os.path.join(boost_prefix, 'lib'),
                    os.path.join(boost_prefix, 'stage', 'lib')):
@@ -121,20 +119,20 @@ def getBuildDir(env, generated_file_dir = 'gen'):
     return buildDir
 
 BOOST_LIBS = [
-    'boost_timer', 
-    'boost_chrono', 
-    'boost_thread', 
+    'boost_timer',
+    'boost_chrono',
+    'boost_thread',
     'boost_system',
     'boost_program_options',
     'boost_filesystem',
 ]
 
 TOOL_LIBS = [
-    'log4cxx', 
-    'czmq', 
-    'zmq', 
-    'protobuf', 
-    'pthread', 
+    'log4cxx',
+    'czmq',
+    'zmq',
+    'protobuf',
+    'pthread',
 ]
 
 def getLinuxEnv(baseEnv):
@@ -174,13 +172,13 @@ def getLinuxEnv(baseEnv):
     env['BOOST_LIBS'] = [b + env['boost_lib_suffix'] for b in BOOST_LIBS]
     env['TOOL_LIBS'] = env['BOOST_LIBS'] + TOOL_LIBS
     env['GPS_LIBS'] = ['gps']
-    
+
     # Conditional build flags
     if int(env['debug']):
         env.Append(CCFLAGS = ['-g'])
     if int(env['opt']):
         env.Append(CCFLAGS = ['-O2'])
-    
+
     return env
 
 
@@ -237,7 +235,7 @@ if platform.system() in 'Linux':
         baseEnv['boost_prefix'] = os.path.join(dev_dir, "boost_1_60_0")
     if not baseEnv['toolchain_dir']:
         baseEnv['toolchain_dir'] = os.path.join(dev_dir, 'arm-bcm2708')
-    
+
     env = getLinuxEnv(baseEnv)
 
     if env['target'] == 'armpi':
@@ -248,7 +246,7 @@ if platform.system() in 'Linux':
         get_i686_platform(env)
     elif env['target'] == 'x86_64':
         get_x86_64_platform(env)
-    else: 
+    else:
         raise UserError('Unknown target architecture')
 else:
     print 'Unknown platform:', platform.system()
@@ -260,7 +258,7 @@ else:
 
 env['BUILD_DIR'] = getBuildDir(env)
 # DUST_LIB_DIR is the location of generated libraries
-env['DUST_LIB_DIR'] = "#/" + env['BUILD_DIR']+ "/lib" 
+env['DUST_LIB_DIR'] = "#/" + env['BUILD_DIR']+ "/lib"
 env.Append(LIBPATH=env['DUST_LIB_DIR'])
 
 # Build output
@@ -282,7 +280,7 @@ if not platform.system().startswith('Windows'):
 
 # Common sets of libraries
 env['COMMON_LIBS'] = ['logger', 'rpccommon', 'common', ]
-env.Append(CPPPATH=['#', 
+env.Append(CPPPATH=['#',
                     '#/common',
                     '#/shared/include',
                     os.path.join('#', env['BUILD_DIR']),
@@ -300,7 +298,7 @@ if not env['publish_dir']:
 env['DIST_TARGETS'] = {}
 
 # ----------------------------------------------------------------------
-# Tools initialization    
+# Tools initialization
 import gen_enum
 import gen_protobuf
 import gen_version
@@ -336,7 +334,7 @@ SConscript(os.path.join('pkg', 'SConscript'),
            variant_dir = build_dir,
            duplicate = 0,
            exports = {"env": env})
-           
+
 # ----------------------------------------------------------------------
 # Useful aliases
 
